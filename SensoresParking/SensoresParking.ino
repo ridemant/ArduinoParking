@@ -91,7 +91,7 @@ void setup() {
       Serial.println("ESP8266 en modo Estacion");
       
     //Nos conectamos a una red wifi 
-    SerialESP8266.println("AT+CWJAP=\"MOVISTAR_7680\",\"truRYZSqk4CTKsAQcaML\"");
+    SerialESP8266.println("AT+CWJAP=\"SSID_NOMBREWIFI\",\"passwordWifi\"");
     Serial.println("Conectandose a la red ...");
     SerialESP8266.setTimeout(20000); //Aumentar si demora la conexion
     if(SerialESP8266.find("OK"))
@@ -140,21 +140,6 @@ void loop() {
       if(s2 >= 17 && s2 <= 22) data.add(1);
       if(s3 >= 17 && s3 <= 22) data.add(0);
       */
-/*
-Serial.print(s1 + " -");
-Serial.print(s2 + " -");
-Serial.println(s3);
-*/
-
-//Serial.println("---> "+root.printTo(Serial));
-      //root.printTo(Serial);
-
-
-
-
-
-
-
 
 
       loop1();
@@ -257,8 +242,7 @@ String RestCliente(String METODO, String servicio, String parametro) {
       SerialESP8266.println("AT+CIPSTART=\"TCP\",\"" + server + "\",80");
       if( SerialESP8266.find("OK"))
       {  
-          //js = "{\"total\":2,\"disponibles\":["+js+"]}";
-          //js = "{\"total\":2,\"disponibles\":["+js+"]}";
+
           //Armamos el encabezado de la peticion http
           String peticionHTTP = METODO+" "+servicio+"/"+parametro;
           peticionHTTP = peticionHTTP +" HTTP/1.1\r\n";
@@ -340,7 +324,7 @@ String RestCliente(String METODO, String servicio, String parametro) {
                   }
                 
               }
-              //Serial.println(cadena);
+
               
             }
             else
@@ -356,10 +340,6 @@ String RestCliente(String METODO, String servicio, String parametro) {
       
 
 
-        
-  //-------------------------------------------------------------------------------
-
-  //delay(100); //pausa de 10seg antes de conectarse nuevamente al servidor (opcional)
   
 }
 
